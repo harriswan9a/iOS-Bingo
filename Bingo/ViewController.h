@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITextField *g_minNumberTextField;
+@property (strong, nonatomic) IBOutlet UITextField *g_maxNumberTextField;
 
 
 @end
