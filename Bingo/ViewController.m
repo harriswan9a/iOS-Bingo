@@ -13,6 +13,7 @@
     
     NSMutableArray *m_numberMutableArray;
     NSMutableArray *m_textFieldMutableArray;
+    NSMutableArray *m_countLineMutableArray;
     
     __weak IBOutlet UITextField *m_TextField1;
     __weak IBOutlet UITextField *m_TextField2;
@@ -30,7 +31,7 @@
 
     __weak IBOutlet UIButton *m_startButton;
     __weak IBOutlet UIButton *m_randomButton;
-
+    __weak IBOutlet UILabel *m_lineLabel;
 }
 
 
@@ -134,8 +135,9 @@
     [super viewDidLoad];
     
     // init
-    m_numberMutableArray = [[NSMutableArray alloc]init];
-    m_textFieldMutableArray = [[NSMutableArray alloc]init];
+    m_numberMutableArray = [[NSMutableArray alloc] init];
+    m_textFieldMutableArray = [[NSMutableArray alloc] init];
+    m_countLineMutableArray = [[NSMutableArray alloc] init];
     
     [self setInitialization];
 }
@@ -146,6 +148,7 @@
     
     [m_textFieldMutableArray removeAllObjects];
     [m_numberMutableArray removeAllObjects];
+    [m_countLineMutableArray removeAllObjects];
     
     // init m_textFieldMutableArray
     [m_textFieldMutableArray addObject:m_TextField1];
@@ -158,9 +161,10 @@
     [m_textFieldMutableArray addObject:m_TextField8];
     [m_textFieldMutableArray addObject:m_TextField9];
     
-    // 儲存值得陣列
+    // 初始存值陣列
     for (int i= 0; i<m_textFieldMutableArray.count; i++) {
         [m_numberMutableArray addObject:@"0"];
+        [m_countLineMutableArray addObject:@"0"];
     }
 }
 
@@ -238,7 +242,41 @@
     numberButton.layer.borderColor = [[UIColor blackColor] CGColor];// border顏色
     numberButton.layer.borderWidth = 1;// border寬度
     
+    
+    [numberButton addTarget:self
+                     action:@selector(clickNumberButton:)
+           forControlEvents:UIControlEventTouchDown];
+
+    
     [self.view addSubview:numberButton]; // 加到 self.view 中
+}
+
+// 遊戲中點擊Button -ok
+-(void)clickNumberButton:(id)sender {
+    UIButton* myButton = sender;
+    int iTag = (myButton.tag - 50);
+    
+    // 如果沒有被點選過 0
+    if ([[m_countLineMutableArray objectAtIndex:iTag] isEqualToString:@"0"]) {
+        [myButton setBackgroundColor:[UIColor redColor]];
+        [myButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [myButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24.0]];    // 改字型大小
+        [m_countLineMutableArray replaceObjectAtIndex:iTag withObject:@"1"];    // 被點選更改陣列值
+    }else if ([[m_countLineMutableArray objectAtIndex:iTag] isEqualToString:@"1"]) {
+        [myButton setBackgroundColor:[UIColor whiteColor]];
+        [myButton setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal]; // 改回預設顏色
+        [myButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0]];    // 改字型大小
+        [m_countLineMutableArray replaceObjectAtIndex:iTag withObject:@"0"];    // 被點選更改陣列值
+    }
+    
+    [self countTotalLine];
+    
+    NSLog(@"===被點擊狀態===%@", m_countLineMutableArray);  // 0:unClick  1:click
+}
+
+// 判斷連線數 function
+-(void)countTotalLine {
+    m_lineLabel.text = @"0";
 }
 
 
@@ -472,7 +510,7 @@
 
 /* @todo    1. Button Tag 目前設定50以後，暫時避開重複tag才能remove
  *          2. 搞清楚 "." 跟 "[ ]" 用法
- *          3.
+ *        ★★3. 無法顯示鍵盤
  *
  *
  */

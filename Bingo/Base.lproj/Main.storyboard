@@ -168,6 +168,20 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="BX0-X1-7H6"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="連線數:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0S6-4c-rzk">
+                                <rect key="frame" x="16" y="121" width="62" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HON-py-C4t">
+                                <rect key="frame" x="86" y="119" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -181,6 +195,7 @@
                         <outlet property="m_TextField7" destination="N5S-dY-DNm" id="RRi-Kp-uPf"/>
                         <outlet property="m_TextField8" destination="jZh-uM-wz1" id="PJX-zV-bsh"/>
                         <outlet property="m_TextField9" destination="TO6-aO-1r3" id="EIn-Cm-0Rc"/>
+                        <outlet property="m_lineLabel" destination="HON-py-C4t" id="6OZ-E9-avj"/>
                         <outlet property="m_maxTextField" destination="YPS-Oi-jy7" id="Pc3-dO-gRF"/>
                         <outlet property="m_minTextField" destination="V3d-UY-Zwq" id="sbe-GT-l2w"/>
                         <outlet property="m_modeSegmentedControl" destination="QTX-o8-rJz" id="e9c-kZ-fia"/>
