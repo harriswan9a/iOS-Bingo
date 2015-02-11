@@ -1,4 +1,4 @@
-    //
+//
 //  ViewController.m
 //  Bingo
 //
@@ -10,10 +10,10 @@
 #import <QuartzCore/QuartzCore.h>  // button border
 @interface ViewController ()
 {
-    // 存放Bingo數組
+    
     NSMutableArray *m_numberMutableArray;
-    // 存放TextField ID
     NSMutableArray *m_textFieldMutableArray;
+    
     __weak IBOutlet UITextField *m_TextField1;
     __weak IBOutlet UITextField *m_TextField2;
     __weak IBOutlet UITextField *m_TextField3;
@@ -29,6 +29,7 @@
     __weak IBOutlet UITextField *m_maxTextField;
 
     __weak IBOutlet UIButton *m_startButton;
+    __weak IBOutlet UIButton *m_randomButton;
 
 }
 
@@ -78,7 +79,7 @@
         NSLog(@"===OK===");
         // 取得亂數
         [self getRandomArray:9];
-        [self setTextFieldValue];
+        [self setTextFieldText];
     }else{
         NSLog(@"===Error===");
     }
@@ -88,6 +89,10 @@
 // 點擊[開始]/[結束]Button
 - (IBAction)clickStartButton:(id)sender {
     UIButton *startButton = (UIButton *)sender;
+
+    int iCount = m_textFieldMutableArray.count;   // 數組個數
+    int iGapX = 0;  // X軸偏移量
+    int iGapY = 0;  // Y軸偏移量
     
     if ([[startButton currentTitle]isEqualToString: @"結束"]) {
         NSLog(@"---%@", [sender currentTitle]);
@@ -95,25 +100,31 @@
         // remove button
         [self removeNumberButton:9];
         [self cleanTextFieldValue];
-        
+        m_randomButton.enabled = YES;
         return;
     }
     if ([self checkInputNumber] == true) {
-        int iCount = m_numberMutableArray.count;   // 數組個數
-        int iGapX = 0;  // X軸偏移量
-        int iGapY = 0;  // Y軸偏移量
+
+        // 開始遊戲 - 同步TextField => m_numberMutableArray
+        for (int i=0; i<iCount; i++) {
+            [m_numberMutableArray replaceObjectAtIndex:i
+                                            withObject:[(UITextField*)[m_textFieldMutableArray objectAtIndex:i] text]];
+        }
+        
+        
+        
         for(int i=0; i<iCount; i++) {
-            //[self addNumberBoutton:i :[m_numberMutableArray objectAtIndex:i] :iCount  :iGapX  :iGapY];
+            //[self addNumberButton:i :[m_numberMutableArray objectAtIndex:i] :iCount  :iGapX  :iGapY];
             
             iGapX = 30 + (i % 3) * 100;
             iGapY = 160 + (i / 3) * 100;
             // 轉換型別 Int to String
             NSString *strValue = [[NSString alloc] initWithFormat:@"%@",[m_numberMutableArray objectAtIndex:i]];
-            [self addNumberBoutton:i :strValue :iCount  :iGapX  :iGapY];
+            [self addNumberButton:i :strValue :iCount  :iGapX  :iGapY];
         }
-        
         NSLog(@"---%@", startButton.currentTitle);
         [startButton setTitle:@"結束" forState:UIControlStateNormal];
+        m_randomButton.enabled = NO;
     }
 
 }
@@ -122,27 +133,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // init
     m_numberMutableArray = [[NSMutableArray alloc]init];
     m_textFieldMutableArray = [[NSMutableArray alloc]init];
     
-    // 初始化
     [self setInitialization];
-
-    
-
-
 }
 
-// 初始化
+
+// 初始化 -ok
 - (void)setInitialization {
     
     [m_textFieldMutableArray removeAllObjects];
     [m_numberMutableArray removeAllObjects];
-    
-    // bingo數組
-    for (int i= 0; i<=8; i++) {
-        [m_numberMutableArray addObject:@"0"];
-    }
     
     // init m_textFieldMutableArray
     [m_textFieldMutableArray addObject:m_TextField1];
@@ -154,8 +157,12 @@
     [m_textFieldMutableArray addObject:m_TextField7];
     [m_textFieldMutableArray addObject:m_TextField8];
     [m_textFieldMutableArray addObject:m_TextField9];
+    
+    // 儲存值得陣列
+    for (int i= 0; i<m_textFieldMutableArray.count; i++) {
+        [m_numberMutableArray addObject:@"0"];
+    }
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -164,27 +171,29 @@
 }
 
 
-// 自動模式
+// 自動模式 -ok
 -(void)autoMode {
     m_minTextField.text = @"1";
     m_maxTextField.text = @"9";
     [self getRandomArray:9];
-    [self setTextFieldValue];
+    [self setTextFieldText];
 }
 
+// 手動模式修改值後寫入Array -ok
 - (IBAction)changeValue:(UITextField *)sender {
+    
     int iTag = sender.tag;
     NSString *strValue = sender.text;
-    //NSLog(@"tag => %i", iTag);
     [m_numberMutableArray replaceObjectAtIndex:iTag withObject:strValue];
-    //NSLog(@"%@", [m_numberMutableArray objectAtIndex:iTag]);
+    
+    NSLog(@"%@", m_numberMutableArray);
 }
 
 
 
 
-// Set textfield value -ok
-- (void)setTextFieldValue {
+// 將陣列內容複製到畫面上 m_numberMutabArray to TextField  -ok
+- (void)setTextFieldText {
     
     int iCount = m_textFieldMutableArray.count;
     UITextField * myTextField;
@@ -208,9 +217,19 @@
 }
 
 
-// 產生button  iTag  strValue  iCount  iGapX  iGapY (點擊[開始]才產生)
-//- (void)addNumberBoutton:(int) iTag :(NSString *) strValue :(int) iCount :(int) iGapX :(int) iGapY{
-- (void)addNumberBoutton:(int) iTag :(NSString *) strValue :(int) iCount :(int) iGapX :(int) iGapY{
+/* 產生遊戲的Button (點擊[開始]才產生) -ok
+ * @param1: int 指定Tag
+ * @param2: str Button Title  
+ * @param3: int 共有多少個Button
+ * @param4: int X軸位置
+ * @param5: int Y軸位置
+ */
+- (void)addNumberButton:(int) iTag
+                       :(NSString *) strValue
+                       :(int) iCount
+                       :(int) iGapX
+                       :(int) iGapY{
+    
     UIButton *numberButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];//生成一個圓角距形 Button
     [numberButton setFrame:CGRectMake(iGapX, iGapY, 60, 60)];//設定位置大小，大約是中偏上
     [numberButton setTitle:strValue forState:UIControlStateNormal]; //設定為顯示 Click，一般狀態顯示
@@ -220,14 +239,12 @@
     numberButton.layer.borderWidth = 1;// border寬度
     
     [self.view addSubview:numberButton]; // 加到 self.view 中
-    
-    if (numberButton.tag == 5) {
-        // 拿掉button
-        [numberButton removeFromSuperview];
-    }
 }
 
-// 關閉遊戲按鈕 -ok
+
+/* 關閉遊戲按鈕 -ok
+ * @param1: int 關閉幾個按鈕
+ */
 - (void)removeNumberButton:(int)iCount {
     for (int i=50; i<=iCount+50; i++) {
         [(UIButton*)[self.view viewWithTag:i]  removeFromSuperview];
@@ -235,7 +252,9 @@
 }
 
 
-// 取得亂數
+/* 取得亂數
+ * @param1: int 產生幾個亂數
+ */
 - (void)getRandomArray:(int) count{
 
     int iRandom = 0;
@@ -248,6 +267,7 @@
     // 清除Array內容
     [m_numberMutableArray removeAllObjects];
     
+    // 產生亂數
     while(m_numberMutableArray.count < count) {
         // 取得 iMinNumber 到 iMaxNumber 之間的亂數
         iRandom = (arc4random() % iMaxNumber) + iMinNumber;
@@ -260,7 +280,8 @@
             
             if (iRandom == [[m_numberMutableArray objectAtIndex:i]intValue]) {
                 bRepeat = true;
-            }else if (bRepeat == true){
+            }
+            if (bRepeat == true){
                 break;
             }
         }
@@ -270,15 +291,19 @@
 
     }
     
-    // test debug
+    /* test debug
     NSLog(@"陣列個數：%d  陣列內容：", m_numberMutableArray.count);
     for (int i=0; i<m_numberMutableArray.count; i++) {
         NSLog(@"%d => %@", i, [m_numberMutableArray objectAtIndex:i]);
     }
+     */
 }
 
 
-// popupAlertView
+/* show Message -ok
+ * @param1: str title
+ * @param2: str message
+ */
 - (void)showMessage:(NSString *)title :(NSString *)message {
     UIAlertView *messageAlertView = [[UIAlertView alloc]
                                         initWithTitle    :title
@@ -291,23 +316,23 @@
 }
 
 
-// 判斷是否為整數
+// 判斷是否為整數 -ok
 + (BOOL)isPureInt:(NSString*)string {
     NSScanner* scan = [NSScanner scannerWithString:string];
-    int val;
+    int val; // 初始化會判斷錯誤 ..
     return[scan scanInt:&val] && [scan isAtEnd];
 }
 
 
-// 檢查輸入的數字範圍
+// 檢查輸入的數字範圍 -ok
 - (BOOL)checkRangeNumber {
     
     int iMinNumber = 0;
     int iMaxNumber = 0;
-    
+    int iCount = [m_textFieldMutableArray count];
     if ([[self class] isPureInt:m_minTextField.text]) {
-        NSLog(@"m_iMinNumber:%@", m_minTextField.text);
-        iMinNumber = [m_minTextField.text intValue];
+        NSLog(@"m_minTextField:%@", m_minTextField.text);
+        iMinNumber = [[m_minTextField text] intValue];
     }else{
         [self showMessage:@"Warning" :@"最小值只能輸入正整數"];
         [m_minTextField becomeFirstResponder];  // focus
@@ -315,8 +340,8 @@
     }
     
     if ([[self class] isPureInt:m_maxTextField.text]) {
-        NSLog(@"m_iMaxNumber:%@", m_maxTextField.text);
-        iMaxNumber = [m_maxTextField.text intValue];
+        NSLog(@"m_maxTextField:%@", m_maxTextField.text);
+        iMaxNumber = [[m_maxTextField text] intValue];
     }else{
         [self showMessage:@"Warning" :@"最大值只能輸入正整數"];
         [m_maxTextField becomeFirstResponder];  // focus
@@ -324,105 +349,130 @@
     }
     
     if (iMinNumber > iMaxNumber ||
-        8 > (iMaxNumber - iMinNumber)) {
+        iCount > (iMaxNumber-iMinNumber+1)) {
         NSLog(@"err: iMinNumber >= iMaxNumber");
-        [self showMessage:@"Warning" :@"Max值必須大於Min值,且相差9以上"];
+        [self showMessage:@"Warning"
+                         :[[NSString alloc]initWithFormat:@"Max值必須大於Min值,且範圍包含%d個數字", iCount]];
         return false;
-    }
-    
-    if (0 > iMinNumber || 7 > iMaxNumber) {
+    }else if (0 > iMinNumber || 0 > iMaxNumber) {
         [self showMessage:@"Warning" :@"輸入的數字必須是正整數"];
         return false;
     }
-    
+
     return true;
 }
 
 
-// 檢查手動輸入的數字
+// 檢查手動輸入的數字 -ok
 - (BOOL)checkInputNumber {
-    UITextField * textField;
-    for (int i=0; i<=8; i++) {
-        textField = (UITextField *)[m_textFieldMutableArray objectAtIndex:i];
-        int iValue = [textField.text intValue];
+    int iCount = [m_textFieldMutableArray count];
+    int iValue = 0;
+    int iMinNumber = 0;
+    int iMaxNumber = 0;
+    UITextField * myTextField = nil;
+    for (int i=0; i<iCount; i++) {
+        myTextField = (UITextField *)[m_textFieldMutableArray objectAtIndex:i];
         
         // 檢查型態
-        if([[self class]isPureInt: [textField text]]){
+        if([[self class]isPureInt:myTextField.text]){
             NSLog(@"%i => OK", i);
+            // String to int
+            iValue = [myTextField.text intValue];
         }else{
             [self showMessage:@"Error" :@"請輸入任意正整數"];
-            [textField becomeFirstResponder];  // focus
+            [myTextField becomeFirstResponder];  // focus
             NSLog(@"請輸入任意正整數");
             return false;
         }
         
         // 是否為正整數
         if (0 >= iValue) {
-            [self showMessage:@"Error" :@"數字必須大於0"];
-            [textField becomeFirstResponder];  // focus
-            NSLog(@"數字必須大於0");
+            [self showMessage:@"Error" :@"輸入的數字必須大於0"];
+            [myTextField becomeFirstResponder];  // focus
+            NSLog(@"輸入數字必須大於0");
             return false;
         }
         
         // 是否重複
-        if ([m_textFieldMutableArray containsObject:[textField text]] == 1) {
-            [textField becomeFirstResponder];  // focus
-            [self showMessage:@"Error" :@"輸入重複"];
-            NSLog(@"輸入重複");
-            return false;
-        }
+        for (int n = 0; n<iCount; n++) {
+            if (n == i) {
+                
+            }else if ([[(UITextField*)[m_textFieldMutableArray objectAtIndex:n] text]
+                isEqualToString:[myTextField text]]) {
+                [myTextField becomeFirstResponder];  // focus
+                [self showMessage:@"Error" :@"重複輸入"];
+                NSLog(@"重複輸入");
 
+                return false;
+            }
+        }
+        
+        // 記錄最大值/最小值
+        if (0 == i) {
+            iMinNumber =[[myTextField text]intValue];
+        }
+        if (iMaxNumber < [[myTextField text]intValue]) {
+            iMaxNumber = [[myTextField text]intValue];
+        }else if (iMinNumber > [[myTextField text]intValue]) {
+            iMinNumber = [[myTextField text]intValue];
+        }
     }
+    
+    // 更新範圍數字
+    m_minTextField.text = [[NSString alloc] initWithFormat:@"%d", iMinNumber];
+    m_maxTextField.text = [[NSString alloc] initWithFormat:@"%d", iMaxNumber];
     
     return true;
 }
 
 
-// 開啟輸入功能
+// 開啟輸入功能 -ok
 - (void)enableTextField:(bool)type {
     
+    int iCount = [m_textFieldMutableArray count];
+    UITextField * myTextField = nil;
     if (type == true) {
         m_minTextField.enabled = YES;
         m_maxTextField.enabled = YES;
-        m_TextField1.enabled = YES;
-        m_TextField2.enabled = YES;
-        m_TextField3.enabled = YES;
-        m_TextField4.enabled = YES;
-        m_TextField5.enabled = YES;
-        m_TextField6.enabled = YES;
-        m_TextField7.enabled = YES;
-        m_TextField8.enabled = YES;
-        m_TextField9.enabled = YES;
+
+        for (int i=0; i<iCount; i++) {
+            myTextField = (UITextField*)[m_textFieldMutableArray objectAtIndex:i];
+            myTextField.enabled = YES;
+        }
+
         NSLog(@"開啟輸入模式");
 
     }else if(type == false) {
         m_minTextField.enabled = NO;
         m_maxTextField.enabled = NO;
-        m_TextField1.enabled = NO;
-        m_TextField2.enabled = NO;
-        m_TextField3.enabled = NO;
-        m_TextField4.enabled = NO;
-        m_TextField5.enabled = NO;
-        m_TextField6.enabled = NO;
-        m_TextField7.enabled = NO;
-        m_TextField8.enabled = NO;
-        m_TextField9.enabled = NO;
+        
+        for (int i=0; i<iCount; i++) {
+            myTextField = (UITextField*)[m_textFieldMutableArray objectAtIndex:i];
+            myTextField.enabled = NO;
+        }
+        
         NSLog(@"關閉輸入模式");
     }
 }
 
 
-// 中斷遊戲
+// 中斷遊戲 -ok
 - (void)stopGame {
     // 移除按鈕
-    [self removeNumberButton:9];
+    [self removeNumberButton:[m_textFieldMutableArray count]];
     // 清除TextField
     [self cleanTextFieldValue];
     // 初始化按鈕
     [m_startButton setTitle:@"開始" forState:UIControlStateNormal];
+    m_randomButton.enabled = YES;
 }
 
 @end
 
 
-
+/* @todo    1. Button Tag 目前設定50以後，暫時避開重複tag才能remove
+ *          2. 搞清楚 "." 跟 "[ ]" 用法
+ *          3.
+ *
+ *
+ */

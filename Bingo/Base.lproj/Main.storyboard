@@ -52,7 +52,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="dgq-nZ-pp6">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="dgq-nZ-pp6">
                                 <rect key="frame" x="230" y="160" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -61,7 +61,7 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="zM0-yA-Lke"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="ez6-U3-f3P">
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="ez6-U3-f3P">
                                 <rect key="frame" x="30" y="260" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -70,7 +70,7 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="pA9-3k-ecG"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="25" borderStyle="line" textAlignment="center" minimumFontSize="17" id="62Z-pt-KGK">
+                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="62Z-pt-KGK">
                                 <rect key="frame" x="130" y="260" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -79,7 +79,7 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="Sbi-qo-24j"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="lXM-92-IO2">
+                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="lXM-92-IO2">
                                 <rect key="frame" x="230" y="260" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -88,7 +88,7 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="nTG-UG-Xyk"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="jZh-uM-wz1">
+                            <textField opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="jZh-uM-wz1">
                                 <rect key="frame" x="130" y="360" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -97,7 +97,7 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="NDz-C2-XM9"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="TO6-aO-1r3">
+                            <textField opaque="NO" clipsSubviews="YES" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="TO6-aO-1r3">
                                 <rect key="frame" x="230" y="360" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -141,7 +141,7 @@
                                     <action selector="segmentedAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Q7x-Li-85O"/>
                                 </connections>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="x08-xG-Yf9">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="x08-xG-Yf9">
                                 <rect key="frame" x="30" y="160" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -150,7 +150,7 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="yxx-57-OMM"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="N5S-dY-DNm">
+                            <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="N5S-dY-DNm">
                                 <rect key="frame" x="30" y="360" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -159,7 +159,7 @@
                                     <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="6ht-xo-itp"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="luG-Jf-sY8">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="luG-Jf-sY8">
                                 <rect key="frame" x="130" y="160" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -184,12 +184,13 @@
                         <outlet property="m_maxTextField" destination="YPS-Oi-jy7" id="Pc3-dO-gRF"/>
                         <outlet property="m_minTextField" destination="V3d-UY-Zwq" id="sbe-GT-l2w"/>
                         <outlet property="m_modeSegmentedControl" destination="QTX-o8-rJz" id="e9c-kZ-fia"/>
+                        <outlet property="m_randomButton" destination="sSl-Ca-KdP" id="wUG-Ev-bVO"/>
                         <outlet property="m_startButton" destination="kVh-G6-vLy" id="HxN-Ov-zTY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="67" y="396"/>
+            <point key="canvasLocation" x="69" y="367"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
