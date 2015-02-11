@@ -52,12 +52,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="luG-Jf-sY8">
-                                <rect key="frame" x="130" y="160" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="dgq-nZ-pp6">
                                 <rect key="frame" x="230" y="160" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -102,7 +96,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clickRandomButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8dF-jy-9XO"/>
+                                    <action selector="clickRandomButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8fF-cs-WHD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kVh-G6-vLy">
@@ -111,6 +105,7 @@
                                 <color key="backgroundColor" red="1" green="0.83838510749999995" blue="0.68595734119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="開始">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -121,11 +116,11 @@
                                 <rect key="frame" x="16" y="77" width="116" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="自動模式"/>
                                     <segment title="手動輸入"/>
+                                    <segment title="自動模式"/>
                                 </segments>
                                 <connections>
-                                    <action selector="segamentedAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Pe2-1Y-tp9"/>
+                                    <action selector="segmentedAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Q7x-Li-85O"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="x08-xG-Yf9">
@@ -133,6 +128,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="Yxi-h0-suk"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="N5S-dY-DNm">
                                 <rect key="frame" x="30" y="360" width="60" height="60"/>
@@ -140,21 +138,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" id="luG-Jf-sY8">
+                                <rect key="frame" x="130" y="160" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changeValue:" destination="BYZ-38-t0r" eventType="editingChanged" id="nhY-kS-Aka"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="g_TextField1" destination="x08-xG-Yf9" id="eqp-MS-tXd"/>
-                        <outlet property="g_TextField2" destination="luG-Jf-sY8" id="f9f-G3-uae"/>
-                        <outlet property="g_TextField3" destination="dgq-nZ-pp6" id="ca6-e0-20d"/>
-                        <outlet property="g_TextField4" destination="ez6-U3-f3P" id="eP6-vz-YCM"/>
-                        <outlet property="g_TextField5" destination="62Z-pt-KGK" id="gRh-AX-xRu"/>
-                        <outlet property="g_TextField6" destination="lXM-92-IO2" id="NyH-fu-j72"/>
-                        <outlet property="g_TextField7" destination="N5S-dY-DNm" id="jyi-NG-vZl"/>
-                        <outlet property="g_TextField8" destination="jZh-uM-wz1" id="RBi-bf-d6O"/>
-                        <outlet property="g_TextField9" destination="TO6-aO-1r3" id="Bu1-hX-7Vh"/>
-                        <outlet property="g_maxNumberTextField" destination="YPS-Oi-jy7" id="lhU-ZF-PCc"/>
-                        <outlet property="g_minNumberTextField" destination="V3d-UY-Zwq" id="Ifb-GK-Mbn"/>
+                        <outlet property="m_TextField1" destination="x08-xG-Yf9" id="Pn9-KP-nWk"/>
+                        <outlet property="m_TextField2" destination="luG-Jf-sY8" id="g79-jA-0uj"/>
+                        <outlet property="m_TextField3" destination="dgq-nZ-pp6" id="GZD-2Y-eUB"/>
+                        <outlet property="m_TextField4" destination="ez6-U3-f3P" id="fiA-t9-nqg"/>
+                        <outlet property="m_TextField5" destination="62Z-pt-KGK" id="FSK-tM-2fk"/>
+                        <outlet property="m_TextField6" destination="lXM-92-IO2" id="zbM-7X-Uqt"/>
+                        <outlet property="m_TextField7" destination="N5S-dY-DNm" id="RRi-Kp-uPf"/>
+                        <outlet property="m_TextField8" destination="jZh-uM-wz1" id="PJX-zV-bsh"/>
+                        <outlet property="m_TextField9" destination="TO6-aO-1r3" id="EIn-Cm-0Rc"/>
+                        <outlet property="m_maxTextField" destination="YPS-Oi-jy7" id="Pc3-dO-gRF"/>
+                        <outlet property="m_minTextField" destination="V3d-UY-Zwq" id="sbe-GT-l2w"/>
+                        <outlet property="m_modeSegmented" destination="QTX-o8-rJz" id="mY3-Al-Cna"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
