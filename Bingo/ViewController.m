@@ -269,14 +269,84 @@
         [m_countLineMutableArray replaceObjectAtIndex:iTag withObject:@"0"];    // 被點選更改陣列值
     }
     
-    [self countTotalLine];
+    
     
     NSLog(@"===被點擊狀態===%@", m_countLineMutableArray);  // 0:unClick  1:click
+    [self countTotalLine];
 }
 
 // 判斷連線數 function
 -(void)countTotalLine {
-    m_lineLabel.text = @"0";
+    int iCount = [m_textFieldMutableArray count];  // 取得總個數  9
+    int iOneLineCount = sqrt(iCount);  // 取得連線的個數(開根號)  3
+    int iConnections = 0;
+    int k = 0;
+  
+    
+    // 判斷橫向連線
+    for (int i=0; i<iOneLineCount; i++) {
+        k = 0;
+        for (int j=0+(i*iOneLineCount); j<iOneLineCount+(i*iOneLineCount); j++) {
+            if (1 == [[m_countLineMutableArray objectAtIndex:j] intValue]) {
+                NSLog(@"%d => %@", j, [m_countLineMutableArray objectAtIndex:j]);
+                k++;
+            }
+            
+            if (k == iOneLineCount) {
+                iConnections++;
+            }
+        }
+    }
+    
+    // 判斷直向連線
+    for (int j=0; j<iOneLineCount; j++) {
+        k = 0;
+        for (int i=0+j; i<iCount; i=i+iOneLineCount) {
+            if (1 == [[m_countLineMutableArray objectAtIndex:i] intValue]) {
+                NSLog(@"%d => %@", i, [m_countLineMutableArray objectAtIndex:i]);
+                k++;
+            }
+            
+            if (k == iOneLineCount) {
+                iConnections++;
+            }
+        }
+    }
+
+    // 判斷反斜線 "\"
+    
+    k = 0;
+    for (int i=0; i<iCount; i=i+(iOneLineCount+1)) {
+        if (1 == [[m_countLineMutableArray objectAtIndex:i] intValue]) {
+            NSLog(@"%d => %@", i, [m_countLineMutableArray objectAtIndex:i]);
+            k++;
+        }
+    }
+    if (k == iOneLineCount) {
+        iConnections++;
+        k = 0;
+    }
+    
+    // 判斷正斜線 "/"
+    
+    k = 0;
+    for (int i=(iOneLineCount-1); i<iCount-(iOneLineCount-1); i=i+(iOneLineCount-1)) {
+        if (1 == [[m_countLineMutableArray objectAtIndex:i] intValue]) {
+            NSLog(@"%d => %@", i, [m_countLineMutableArray objectAtIndex:i]);
+            k++;
+        }
+    }
+    if (k == iOneLineCount) {
+        iConnections++;
+        k = 0;
+    }
+    
+    
+    NSLog(@"目前連線數：%d", iConnections);
+    
+    // 更新目前連線數
+    m_lineLabel.text = [[NSString alloc] initWithFormat:@"%d", iConnections];
+
 }
 
 
