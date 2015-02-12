@@ -45,6 +45,7 @@
     
     // 中斷遊戲
     [self stopGame];
+    
     switch (sender.selectedSegmentIndex) {
 
         case 0: // 手動輸入
@@ -69,7 +70,7 @@
 }
 
 
-// 點擊亂數button
+// 點擊亂數button -ok
 - (IBAction)clickRandomButton:(UIButton *)sender {
     
     // 自動模式重新取得亂數
@@ -79,7 +80,7 @@
     }else if([self checkRangeNumber]) { // 確認使用者輸入的數字範圍
         NSLog(@"===OK===");
         // 取得亂數
-        [self getRandomArray:9];
+        [self getRandomArray:[m_textFieldMutableArray count]];
         [self setTextFieldText];
     }else{
         NSLog(@"===Error===");
@@ -97,11 +98,8 @@
     
     if ([[startButton currentTitle]isEqualToString: @"結束"]) {
         NSLog(@"---%@", [sender currentTitle]);
-        [startButton setTitle:@"開始" forState:UIControlStateNormal];
-        // remove button
-        [self removeNumberButton:9];
-        [self cleanTextFieldValue];
-        m_randomButton.enabled = YES;
+        // 中斷遊戲
+        [self stopGame];
         return;
     }
     if ([self checkInputNumber] == true) {
@@ -398,7 +396,6 @@
         }
 
     }
-    
     /* test debug
     NSLog(@"陣列個數：%d  陣列內容：", m_numberMutableArray.count);
     for (int i=0; i<m_numberMutableArray.count; i++) {
@@ -432,7 +429,10 @@
 }
 
 
-// 檢查輸入的數字範圍 -ok
+/* 檢查輸入的數字範圍 -ok
+ * iMinNumber >= 0
+ * iMaxNumber < 99
+ */
 - (BOOL)checkRangeNumber {
     
     int iMinNumber = 0;
@@ -441,6 +441,11 @@
     if ([[self class] isPureInt:m_minTextField.text]) {
         NSLog(@"m_minTextField:%@", m_minTextField.text);
         iMinNumber = [[m_minTextField text] intValue];
+        //限制最大的範圍
+        if (99 < iMinNumber || 1 > iMinNumber ) {
+            [self showMessage:@"Warning" :@"最小值不能超過1~99"];
+            return false;
+        }
     }else{
         [self showMessage:@"Warning" :@"最小值只能輸入正整數"];
         [m_minTextField becomeFirstResponder];  // focus
@@ -450,6 +455,11 @@
     if ([[self class] isPureInt:m_maxTextField.text]) {
         NSLog(@"m_maxTextField:%@", m_maxTextField.text);
         iMaxNumber = [[m_maxTextField text] intValue];
+        //限制最大的範圍
+        if (99 < iMaxNumber || 1 > iMaxNumber ) {
+            [self showMessage:@"Warning" :@"最大值不能超過1~99"];
+            return false;
+        }
     }else{
         [self showMessage:@"Warning" :@"最大值只能輸入正整數"];
         [m_maxTextField becomeFirstResponder];  // focus
@@ -461,9 +471,6 @@
         NSLog(@"err: iMinNumber >= iMaxNumber");
         [self showMessage:@"Warning"
                          :[[NSString alloc]initWithFormat:@"Max值必須大於Min值,且範圍包含%d個數字", iCount]];
-        return false;
-    }else if (0 > iMinNumber || 0 > iMaxNumber) {
-        [self showMessage:@"Warning" :@"輸入的數字必須是正整數"];
         return false;
     }
 
@@ -493,11 +500,11 @@
             return false;
         }
         
-        // 是否為正整數
-        if (0 >= iValue) {
-            [self showMessage:@"Error" :@"輸入的數字必須大於0"];
+        // 限制範圍
+        if (0 > iValue || 99 < iValue) {
+            [self showMessage:@"Error" :@"輸入的數字必須介於1~99之間"];
             [myTextField becomeFirstResponder];  // focus
-            NSLog(@"輸入數字必須大於0");
+            NSLog(@"輸入的數字必須介於1~99之間");
             return false;
         }
         
@@ -564,7 +571,7 @@
 }
 
 
-// 中斷遊戲 -ok
+// 中斷遊戲重置所有配置 -ok
 - (void)stopGame {
     // 移除按鈕
     [self removeNumberButton:[m_textFieldMutableArray count]];
@@ -573,6 +580,8 @@
     // 初始化按鈕
     [m_startButton setTitle:@"開始" forState:UIControlStateNormal];
     m_randomButton.enabled = YES;
+    // 重置連線數
+    m_lineLabel.text = @"0";
 }
 
 @end
