@@ -11,7 +11,7 @@
 @interface ViewController ()
 {
     
-    NSMutableArray *m_numberMutableArray;
+    //NSMutableArray *m_numberMutableArray;
     NSMutableArray *m_textFieldMutableArray;
     NSMutableArray *m_countLineMutableArray;
     
@@ -41,7 +41,7 @@
 
 
 // 切換模式
-- (IBAction)segmentedAction:(UISegmentedControl *)sender {
+- (IBAction)selectModeAction:(UISegmentedControl *)sender {
     
     // 中斷遊戲
     [self stopGame];
@@ -80,8 +80,7 @@
     }else if([self checkRangeNumber]) { // 確認使用者輸入的數字範圍
         NSLog(@"===OK===");
         // 取得亂數
-        [self getRandomArray:(int)[m_textFieldMutableArray count]];
-        [self setTextFieldText];
+        [self getRandom:(int)[m_textFieldMutableArray count]];
     }else{
         NSLog(@"===Error===");
     }
@@ -105,12 +104,6 @@
     
     // 檢查輸入的數值
     if ([self checkInputNumber] == true) {
-
-        // 開始遊戲 - 同步TextField => m_numberMutableArray
-        for (int i=0; i<iCount; i++) {
-            [m_numberMutableArray replaceObjectAtIndex:i
-                                            withObject:[(UITextField*)[m_textFieldMutableArray objectAtIndex:i] text]];
-        }
         
         //動態產生Button
         NSString *strValue = nil;
@@ -118,7 +111,7 @@
             iGapX = 30 + (i % 3) * 100;  // 計算Ｘ軸位置
             iGapY = 160 + (i / 3) * 100; // 計算Y軸位置
             // 轉換型別 Int to String
-            strValue = [[NSString alloc] initWithFormat:@"%@",[m_numberMutableArray objectAtIndex:i]];
+            strValue = [[NSString alloc] initWithFormat:@"%@",[(UITextField*)[m_textFieldMutableArray objectAtIndex:i] text]];
             [self addNumberButton:i :strValue :iCount  :iGapX  :iGapY];
         }
         NSLog(@"---%@", startButton.currentTitle);
@@ -133,7 +126,6 @@
     [super viewDidLoad];
     
     // init
-    m_numberMutableArray = [[NSMutableArray alloc] init];
     m_textFieldMutableArray = [[NSMutableArray alloc] init];
     m_countLineMutableArray = [[NSMutableArray alloc] init];
     
@@ -146,7 +138,6 @@
 - (void)setInitialization {
     
     [m_textFieldMutableArray removeAllObjects];
-    [m_numberMutableArray removeAllObjects];
     [m_countLineMutableArray removeAllObjects];
     
     // init m_textFieldMutableArray
@@ -159,11 +150,9 @@
     [m_textFieldMutableArray addObject:m_TextField7];
     [m_textFieldMutableArray addObject:m_TextField8];
     [m_textFieldMutableArray addObject:m_TextField9];
-    
-    // 重置存值陣列
+
     // 重置判斷連線array
     for (int i= 0; i<m_textFieldMutableArray.count; i++) {
-        [m_numberMutableArray addObject:@"0"];
         [m_countLineMutableArray addObject:@"0"];
     }
 }
@@ -179,33 +168,34 @@
 -(void)autoMode {
     m_minTextField.text = @"1";
     m_maxTextField.text = @"9";
-    [self getRandomArray:(int)[m_textFieldMutableArray count]];
-    [self setTextFieldText];
+    [self getRandom:(int)[m_textFieldMutableArray count]];
 }
 
 // 手動模式修改值後寫入Array -ok
+// 不用了
 - (IBAction)changeValue:(UITextField *)sender {
     
-    int iTag = (int)[sender tag];
-    NSString *strValue = sender.text;
-    [m_numberMutableArray replaceObjectAtIndex:iTag withObject:strValue];
-    
-    NSLog(@"%@", m_numberMutableArray);
+//    int iTag = (int)[sender tag];
+//    NSString *strValue = sender.text;
+//    [m_numberMutableArray replaceObjectAtIndex:iTag withObject:strValue];
+//    
+//    NSLog(@"%@", m_numberMutableArray);
 }
 
 
 
 
 // 將陣列內容複製到畫面上 m_numberMutabArray to TextField  -ok
+//不用了
 - (void)setTextFieldText {
-    
-    int iCount = (int)[m_textFieldMutableArray count];
-    UITextField * myTextField;
-    for (int i=0; i<iCount; i++) {
-        myTextField = (UITextField*)[m_textFieldMutableArray objectAtIndex:i];
-        // 不能寫這樣 myTextField.text = @"%@", [m_numberMutableArray objectAtIndex:i];
-        myTextField.text = [NSString stringWithFormat:@"%@", [m_numberMutableArray objectAtIndex:i]];
-    }
+//    
+//    int iCount = (int)[m_textFieldMutableArray count];
+//    UITextField * myTextField;
+//    for (int i=0; i<iCount; i++) {
+//        myTextField = (UITextField*)[m_textFieldMutableArray objectAtIndex:i];
+//        // 不能寫這樣 myTextField.text = @"%@", [m_numberMutableArray objectAtIndex:i];
+//        myTextField.text = [NSString stringWithFormat:@"%@", [m_numberMutableArray objectAtIndex:i]];
+//    }
 }
 
 
@@ -216,7 +206,7 @@
     UITextField * myTextField;
     for (int i=0; i<iCount; i++) {
         myTextField = (UITextField*)[m_textFieldMutableArray objectAtIndex:i];
-        myTextField.text = @"";
+        myTextField.text = nil;
     }
 }
 
@@ -268,10 +258,7 @@
         [myButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0]];    // 改字型大小
         [m_countLineMutableArray replaceObjectAtIndex:iTag withObject:@"0"];    // 被點選更改陣列值
     }
-    
-    
-    
-    NSLog(@"===被點擊狀態===%@", m_countLineMutableArray);  // 0:unClick  1:click
+
     [self countTotalLine];
 }
 
@@ -288,7 +275,6 @@
         k = 0;
         for (int j=0+(i*iOneLineCount); j<iOneLineCount+(i*iOneLineCount); j++) {
             if (1 == [[m_countLineMutableArray objectAtIndex:j] intValue]) {
-                NSLog(@"%d => %@", j, [m_countLineMutableArray objectAtIndex:j]);
                 k++;
             }
             
@@ -303,7 +289,6 @@
         k = 0;
         for (int i=0+j; i<iCount; i=i+iOneLineCount) {
             if (1 == [[m_countLineMutableArray objectAtIndex:i] intValue]) {
-                NSLog(@"%d => %@", i, [m_countLineMutableArray objectAtIndex:i]);
                 k++;
             }
             
@@ -318,13 +303,11 @@
     k = 0;
     for (int i=0; i<iCount; i=i+(iOneLineCount+1)) {
         if (1 == [[m_countLineMutableArray objectAtIndex:i] intValue]) {
-            NSLog(@"%d => %@", i, [m_countLineMutableArray objectAtIndex:i]);
             k++;
         }
     }
     if (k == iOneLineCount) {
         iConnections++;
-        k = 0;
     }
     
     // 判斷正斜線 "/"
@@ -332,13 +315,11 @@
     k = 0;
     for (int i=(iOneLineCount-1); i<iCount-(iOneLineCount-1); i=i+(iOneLineCount-1)) {
         if (1 == [[m_countLineMutableArray objectAtIndex:i] intValue]) {
-            NSLog(@"%d => %@", i, [m_countLineMutableArray objectAtIndex:i]);
             k++;
         }
     }
     if (k == iOneLineCount) {
         iConnections++;
-        k = 0;
     }
     
     
@@ -360,10 +341,10 @@
 }
 
 
-/* 取得亂數
+/* 取得亂數   -ok
  * @param1: int 產生幾個亂數
  */
-- (void)getRandomArray:(int) count{
+- (void)getRandom:(int) iCount{
 
     int iRandom = 0;
     Boolean bRepeat = false;
@@ -372,21 +353,22 @@
     int iMinNumber = [m_minTextField.text intValue];
     int iMaxNumber = [m_maxTextField.text intValue];
     
-    // 清除Array內容
-    [m_numberMutableArray removeAllObjects];
+    // 清除 TextField 內容
+    [self cleanTextFieldValue];
     
     // 產生亂數
-    while(m_numberMutableArray.count < count) {
+    NSMutableArray *numberMutableArray = [[NSMutableArray alloc] init];
+    while(numberMutableArray.count < iCount) {
         // 取得 iMinNumber 到 iMaxNumber 之間的亂數
         iRandom = (arc4random() % iMaxNumber) + iMinNumber;
         bRepeat = false;
-        if(0 == m_numberMutableArray.count) {
-            [m_numberMutableArray addObject:@(iRandom)];
+        if(0 == numberMutableArray.count) {
+            [numberMutableArray addObject:@(iRandom)];
         }
         // 檢查重複
-        for (int i=0; i<m_numberMutableArray.count; i++) {
-            
-            if (iRandom == [[m_numberMutableArray objectAtIndex:i]intValue]) {
+        for (int i=0; i<numberMutableArray.count; i++) {
+
+            if (iRandom == (int)[[numberMutableArray objectAtIndex:i]intValue]) {
                 bRepeat = true;
             }
             if (bRepeat == true){
@@ -394,16 +376,16 @@
             }
         }
         if (bRepeat == false) {
-            [m_numberMutableArray addObject:@(iRandom)];
+            [numberMutableArray addObject:@(iRandom)];
         }
-
     }
-    /* test debug
-    NSLog(@"陣列個數：%d  陣列內容：", m_numberMutableArray.count);
-    for (int i=0; i<m_numberMutableArray.count; i++) {
-        NSLog(@"%d => %@", i, [m_numberMutableArray objectAtIndex:i]);
+    // 將亂數推到畫面上
+    UITextField *myTextField = nil;
+    for (int i=0; i<iCount; i++) {
+        
+        myTextField = (UITextField*)[m_textFieldMutableArray objectAtIndex:i];
+        myTextField.text = [NSString stringWithFormat:@"%@", [numberMutableArray objectAtIndex:i]];
     }
-     */
 }
 
 
@@ -600,6 +582,11 @@
     m_lineLabel.text = @"0";
     // 重置設定
     [self setInitialization];
+    if (1 == m_modeSegmentedControl.selectedSegmentIndex) {
+        [self enableTextField:false :false :true];
+    }else{
+        [self enableTextField:true :true :true];
+    }
     
 }
 
