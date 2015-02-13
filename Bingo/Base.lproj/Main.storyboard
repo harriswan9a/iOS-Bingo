@@ -12,42 +12,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="dgq-nZ-pp6">
-                                <rect key="frame" x="230" y="160" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="ez6-U3-f3P">
-                                <rect key="frame" x="30" y="260" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="62Z-pt-KGK">
-                                <rect key="frame" x="130" y="260" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="lXM-92-IO2">
-                                <rect key="frame" x="230" y="260" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="jZh-uM-wz1">
-                                <rect key="frame" x="130" y="360" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="TO6-aO-1r3">
-                                <rect key="frame" x="230" y="360" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kVh-G6-vLy">
                                 <rect key="frame" x="100" y="444" width="120" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -58,27 +22,9 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="clickStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cgb-vL-SVh"/>
+                                    <action selector="clickStartButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t8F-o0-jgf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="x08-xG-Yf9">
-                                <rect key="frame" x="30" y="160" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="N5S-dY-DNm">
-                                <rect key="frame" x="30" y="360" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="?" textAlignment="center" minimumFontSize="17" id="luG-Jf-sY8">
-                                <rect key="frame" x="130" y="160" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
                             <view contentMode="scaleToFill" id="kmH-Tg-KwJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -156,36 +102,34 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="clickRandomButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8fF-cs-WHD"/>
+                                            <action selector="clickRandomButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sXc-is-V4P"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96103840898099646" green="1" blue="0.8344774848245593" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view tag="49" contentMode="scaleToFill" id="McO-WI-ISA">
+                                <rect key="frame" x="0.0" y="139" width="320" height="297"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.66509572539999995" green="1" blue="0.94596326799999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.66509572537606254" green="1" blue="0.94596326801060138" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="m_TextField1" destination="x08-xG-Yf9" id="Pn9-KP-nWk"/>
-                        <outlet property="m_TextField2" destination="luG-Jf-sY8" id="g79-jA-0uj"/>
-                        <outlet property="m_TextField3" destination="dgq-nZ-pp6" id="GZD-2Y-eUB"/>
-                        <outlet property="m_TextField4" destination="ez6-U3-f3P" id="fiA-t9-nqg"/>
-                        <outlet property="m_TextField5" destination="62Z-pt-KGK" id="FSK-tM-2fk"/>
-                        <outlet property="m_TextField6" destination="lXM-92-IO2" id="zbM-7X-Uqt"/>
-                        <outlet property="m_TextField7" destination="N5S-dY-DNm" id="RRi-Kp-uPf"/>
-                        <outlet property="m_TextField8" destination="jZh-uM-wz1" id="PJX-zV-bsh"/>
-                        <outlet property="m_TextField9" destination="TO6-aO-1r3" id="EIn-Cm-0Rc"/>
-                        <outlet property="m_lineLabel" destination="HON-py-C4t" id="6OZ-E9-avj"/>
+                        <outlet property="m_connectionLabel" destination="HON-py-C4t" id="GKa-cP-ttA"/>
+                        <outlet property="m_controlView" destination="kmH-Tg-KwJ" id="3dK-SK-1Id"/>
                         <outlet property="m_maxTextField" destination="YPS-Oi-jy7" id="Pc3-dO-gRF"/>
                         <outlet property="m_minTextField" destination="V3d-UY-Zwq" id="sbe-GT-l2w"/>
                         <outlet property="m_modeSegmentedControl" destination="QTX-o8-rJz" id="e9c-kZ-fia"/>
+                        <outlet property="m_playAreaView" destination="McO-WI-ISA" id="tgf-Ej-55b"/>
                         <outlet property="m_randomButton" destination="sSl-Ca-KdP" id="wUG-Ev-bVO"/>
                         <outlet property="m_startButton" destination="kVh-G6-vLy" id="HxN-Ov-zTY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="69" y="367"/>
+            <point key="canvasLocation" x="-183" y="427"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
