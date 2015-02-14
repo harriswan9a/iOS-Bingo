@@ -43,34 +43,27 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="輸入數字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9aY-Wx-9Ox">
-                                        <rect key="frame" x="155" y="57" width="68" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Max" textAlignment="center" minimumFontSize="17" id="YPS-Oi-jy7">
-                                        <rect key="frame" x="203" y="79" width="40" height="30"/>
+                                        <rect key="frame" x="191" y="60" width="40" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Min" textAlignment="center" minimumFontSize="17" id="V3d-UY-Zwq">
-                                        <rect key="frame" x="155" y="79" width="40" height="30"/>
+                                        <rect key="frame" x="143" y="60" width="40" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OLv-hf-py9">
-                                        <rect key="frame" x="196" y="83" width="7" height="21"/>
+                                        <rect key="frame" x="184" y="64" width="7" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="QTX-o8-rJz">
-                                        <rect key="frame" x="16" y="66" width="116" height="29"/>
+                                        <rect key="frame" x="16" y="61" width="116" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="手動輸入"/>
@@ -81,21 +74,21 @@
                                         </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="連線數:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0S6-4c-rzk">
-                                        <rect key="frame" x="16" y="110" width="62" height="21"/>
+                                        <rect key="frame" x="16" y="104" width="62" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HON-py-C4t">
-                                        <rect key="frame" x="86" y="108" width="52" height="21"/>
+                                        <rect key="frame" x="86" y="102" width="52" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sSl-Ca-KdP">
-                                        <rect key="frame" x="251" y="62" width="60" height="48"/>
+                                        <rect key="frame" x="244" y="41" width="60" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.8717842487373737" green="0.87014412940707175" blue="0.85530722556287875" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="亂數">
@@ -105,11 +98,32 @@
                                             <action selector="clickRandomButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sXc-is-V4P"/>
                                         </connections>
                                     </button>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minimumValue="3" maximumValue="7" id="dVB-ao-JFI">
+                                        <rect key="frame" x="210" y="96" width="94" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="changeDifficultyAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="s6J-UT-GRr"/>
+                                        </connections>
+                                    </stepper>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="困難度:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3EU-AY-vtg">
+                                        <rect key="frame" x="129" y="102" width="51" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wec-Uf-vYz">
+                                        <rect key="frame" x="177" y="102" width="27" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96103840898099646" green="1" blue="0.8344774848245593" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view tag="49" contentMode="scaleToFill" id="McO-WI-ISA">
-                                <rect key="frame" x="0.0" y="139" width="320" height="297"/>
+                                <rect key="frame" x="10" y="139" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.66509572539999995" green="1" blue="0.94596326799999997" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -119,6 +133,8 @@
                     <connections>
                         <outlet property="m_connectionLabel" destination="HON-py-C4t" id="GKa-cP-ttA"/>
                         <outlet property="m_controlView" destination="kmH-Tg-KwJ" id="3dK-SK-1Id"/>
+                        <outlet property="m_difficultyLable" destination="wec-Uf-vYz" id="4A8-bw-A6G"/>
+                        <outlet property="m_difficultyStepper" destination="dVB-ao-JFI" id="oEJ-I9-6iq"/>
                         <outlet property="m_maxTextField" destination="YPS-Oi-jy7" id="Pc3-dO-gRF"/>
                         <outlet property="m_minTextField" destination="V3d-UY-Zwq" id="sbe-GT-l2w"/>
                         <outlet property="m_modeSegmentedControl" destination="QTX-o8-rJz" id="e9c-kZ-fia"/>
@@ -129,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-183" y="427"/>
+            <point key="canvasLocation" x="-147" y="422"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
