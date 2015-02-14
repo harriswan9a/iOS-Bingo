@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kVh-G6-vLy">
-                                <rect key="frame" x="100" y="444" width="120" height="40"/>
+                                <rect key="frame" x="100" y="499" width="120" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.83838510749999995" blue="0.68595734119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -123,7 +123,7 @@
                                 <color key="backgroundColor" red="0.96103840898099646" green="1" blue="0.8344774848245593" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view tag="49" contentMode="scaleToFill" id="McO-WI-ISA">
-                                <rect key="frame" x="10" y="139" width="300" height="300"/>
+                                <rect key="frame" x="10" y="159" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.66509572539999995" green="1" blue="0.94596326799999997" alpha="1" colorSpace="calibratedRGB"/>
                             </view>

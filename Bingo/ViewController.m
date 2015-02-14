@@ -37,7 +37,7 @@
 
 
 // 切換模式
-- (IBAction)selectModeAction:(UISegmentedControl *)sender {   NSLog(@"-selectModeAction");
+- (IBAction)selectModeAction:(UISegmentedControl *)sender {   NSLog(@"-selectModeAction --ok");
     
     // 中斷遊戲
     [self stopGame];
@@ -46,14 +46,14 @@
 
         case 0: // 手動輸入
         {
-            [self showMessage:@"手動輸入" :@"請輸入數字範圍或在方格中插入數字"];
-            [self enableControl:true :true :true :true];
+            [self showMessage:@"手動輸入" :@"請輸入數字範圍或在方格中填入數字"];
+            //[self enableControl:true :true :true :true];
             break;
         }
         case 1: // 自動模式
         {
             [self showMessage:@"自動模式" :@"請點擊開始"];
-            [self enableControl:false :false :true :false];
+            //[self enableControl:false :false :true :false];
             [self autoMode];
             break;
         }
@@ -64,7 +64,7 @@
 
 
 // 點擊亂數button -ok
-- (IBAction)clickRandomButtonAction:(UIButton *)sender {    NSLog(@"-clickRandomButtonAction");
+- (IBAction)clickRandomButtonAction:(UIButton *)sender {    NSLog(@"-clickRandomButtonAction  --ok");
     
     // 自動模式重新取得亂數
     if(1 == m_modeSegmentedControl.selectedSegmentIndex){
@@ -80,8 +80,8 @@
 }
 
 
-// 點擊[開始]/[結束]Button
-- (IBAction)clickStartButtonAction:(id)sender { NSLog(@"-clickStartButtonAction");
+// 點擊[開始]/[結束]Button --ok
+- (IBAction)clickStartButtonAction:(id)sender { NSLog(@"-clickStartButtonAction --ok");
     UIButton *startButton = (UIButton *)sender;
 
     int iCount = (int)[m_aryTextField count];
@@ -98,6 +98,8 @@
 
         // 動態產生Button
         for(int i=0; i<iCount; i++) {
+            
+            // 傳入TexField 產生Button
             [self addNumberButton:(UITextField*)[m_aryTextField objectAtIndex:i]];
         }
         
@@ -134,8 +136,7 @@
 }
 
 // select difficulty
-- (void)assignTextField:(int)iCount {  NSLog(@"-assignTextField");
-    //NSArray *aryTextFieldParam = [NSArray alloc] initWithObjects:<#(id), ...#>, nil;
+- (void)assignTextField:(int)iCount {  NSLog(@"-assignTextField --ok");
 
     int iSetParam = ((int)sqrt(iCount))-3;          // 指定用哪一組參數
     int iParamArray[10][6] = {100, 100, 60, 60, 20, 15, //3
@@ -143,13 +144,14 @@
                                55,  55, 40, 40, 20, 15, //5
                                45,  45, 34, 34, 20, 15, //6
                                38,  38, 30, 30, 20, 15 }; //7
+    int iGapX = 0;
+    int iGapY = 0;
     
     //產生 textField
     for(int i=0; i<iCount; i++) {
-        int iGapX = iParamArray[iSetParam][4] + (i % (int)sqrt(iCount)) * iParamArray[iSetParam][0];  // 計算Ｘ軸位置
-        int iGapY = iParamArray[iSetParam][5] + (i / (int)sqrt(iCount)) * iParamArray[iSetParam][1]; // 計算Y軸位置
+        iGapX = iParamArray[iSetParam][4] + (i % (int)sqrt(iCount)) * iParamArray[iSetParam][0];  // 計算Ｘ軸位置
+        iGapY = iParamArray[iSetParam][5] + (i / (int)sqrt(iCount)) * iParamArray[iSetParam][1]; // 計算Y軸位置
         // 轉換型別 Int to String
-        
         [self addTextField:i :nil :iGapX  :iGapY :iParamArray[iSetParam][2] :iParamArray[iSetParam][3]];
     }
     
@@ -157,7 +159,7 @@
 }
 
 // 重置連線紀錄
-- (void)resetNumberStatus {  NSLog(@"-resetNumberStatus");
+- (void)resetNumberStatus {  NSLog(@"-resetNumberStatus --ok");
     // 重置顯示連線數
     [m_connectionLabel setText:@"0"];
     // 重置判斷連線array
@@ -175,19 +177,20 @@
 
 
 // 自動模式 -ok
--(void)autoMode {  NSLog(@"-autoMode");
+-(void)autoMode {  NSLog(@"-autoMode --ok");
     m_minTextField.text = @"1";
     m_maxTextField.text = @"9";
-    [self removeTextField:(int)[m_aryTextField count]]; // 清除畫面上的TextField
+    [self removeTextField:(int)[m_aryTextField count]]; // 清除畫面上原有的TextField
     [m_aryTextField removeAllObjects];                  // 清除textField元件陣列
     [self assignTextField:9];                           // 產生textField元件
     [self getRandom:(int)[m_aryTextField count]];       // 取得亂數
     [self enableControl:false :false :true :false];     // 關閉控制項
+    m_difficultyLable.text = @"3";
 }
 
 
 //  清除輸入的數值 -ok
-- (void)cleanTextFieldValue {  NSLog(@"-cleanTextFieldValue");
+- (void)cleanTextFieldValue {  NSLog(@"-cleanTextFieldValue --ok");
     
     int iCount = (int)[m_aryTextField count];
     UITextField * myTextField;
@@ -205,16 +208,16 @@
  * @param4: int X軸位置
  * @param5: int Y軸位置
  */
-- (void)addNumberButton:(UITextField*) myTextField{ NSLog(@"-addNumberButton");
+- (void)addNumberButton:(UITextField*) myTextField{ NSLog(@"-addNumberButton --ok");
     
-    int iTag = (int)myTextField.tag-100;    // textField tag = 100 ~
+    int iTag = (int)myTextField.tag-100;    // textField tag=100~499; Button tag=500~
     int iGapX = (int)[myTextField frame].origin.x;
     int iGapY = (int)[myTextField frame].origin.y;
     int iSizeW = (int)[myTextField frame].size.width;
     int iSizeH = (int)[myTextField frame].size.height;
     NSString *strValue = myTextField.text;
     
-    UIButton *numberButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];//生成一個圓角距形 Button  需搭配下一行的code才有圓角
+    UIButton *numberButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];//生成一個圓角距形 Button  需搭配下一行的code才有圓角效果
     [numberButton.layer setCornerRadius:0];
     [numberButton setFrame:CGRectMake(iGapX, iGapY, iSizeW, iSizeH)];//設定位置大小，大約是中偏上
     [numberButton setTitle:strValue forState:UIControlStateNormal]; //設定為顯示 Click，一般狀態顯示
@@ -223,13 +226,12 @@
     numberButton.layer.borderColor = [[UIColor blackColor] CGColor];// border顏色
     numberButton.layer.borderWidth = 1;// border寬度
     
-    
     [numberButton addTarget:self
                      action:@selector(clickNumberButton:)
            forControlEvents:UIControlEventTouchDown];
 
     
-    [m_playAreaView addSubview:numberButton]; // 加到 self.view 中
+    [m_playAreaView addSubview:numberButton]; // 加到 view 中
 
 }
 
@@ -239,7 +241,7 @@
                     :(int) iGapX
                     :(int) iGapY
                     :(int) iSizeX
-                    :(int) iSizeY{  NSLog(@"-addTextField");
+                    :(int) iSizeY{  NSLog(@"-addTextField --ok");
     
     UITextField *myTextField = [[UITextField alloc] init];
     [myTextField setFrame           :CGRectMake(iGapX, iGapY, iSizeX, iSizeY)];
@@ -261,8 +263,8 @@
 }
 
 
-// 遊戲中點擊Button -ok
--(void)clickNumberButton:(id)sender {  NSLog(@"-clickNumberButton");
+// 遊戲中點擊Button
+-(void)clickNumberButton:(id)sender {  NSLog(@"-clickNumberButton --ok");
     UIButton* myButton = sender;
     int iTag = (int)(myButton.tag - 500);
     
@@ -283,7 +285,7 @@
 }
 
 // 判斷連線數 function
--(void)countTotalLine {  NSLog(@"-countTotalLine");
+-(void)countTotalLine {  NSLog(@"-countTotalLine --ok");
     int iCount = (int)[m_aryTextField count];  // 取得總個數  9
     int iOneLineCount = sqrt(iCount);  // 取得連線的個數(開根號)  3
     int iConnections = 0;
@@ -293,7 +295,7 @@
     // 判斷橫向連線
     for (int i=0; i<iOneLineCount; i++) {
         k = 0;
-        for (int j=0+(i*iOneLineCount); j<iOneLineCount+(i*iOneLineCount); j++) {
+        for (int j=(i*iOneLineCount); j<iOneLineCount+(i*iOneLineCount); j++) {
             if (1 == [[m_aryButtonStatus objectAtIndex:j] intValue]) {
                 k++;
             }
@@ -307,7 +309,7 @@
     // 判斷直向連線
     for (int j=0; j<iOneLineCount; j++) {
         k = 0;
-        for (int i=0+j; i<iCount; i=i+iOneLineCount) {
+        for (int i=j; i<iCount; i=i+iOneLineCount) {
             if (1 == [[m_aryButtonStatus objectAtIndex:i] intValue]) {
                 k++;
             }
@@ -319,7 +321,6 @@
     }
 
     // 判斷反斜線 "\"
-    
     k = 0;
     for (int i=0; i<iCount; i=i+(iOneLineCount+1)) {
         if (1 == [[m_aryButtonStatus objectAtIndex:i] intValue]) {
@@ -331,7 +332,6 @@
     }
     
     // 判斷正斜線 "/"
-    
     k = 0;
     for (int i=(iOneLineCount-1); i<iCount-(iOneLineCount-1); i=i+(iOneLineCount-1)) {
         if (1 == [[m_aryButtonStatus objectAtIndex:i] intValue]) {
@@ -373,7 +373,7 @@
 /* 取得亂數   -ok
  * @param1: int 產生幾個亂數
  */
-- (void)getRandom:(int) iCount{  NSLog(@"-getRandom");
+- (void)getRandom:(int) iCount{  NSLog(@"-getRandom  --ok");
 
     int iRandom = 0;
     Boolean bRepeat = false;
@@ -386,26 +386,29 @@
     [self cleanTextFieldValue];
     
     // 產生亂數
-    NSMutableArray *numberMutableArray = [[NSMutableArray alloc] init];
-    while(numberMutableArray.count < iCount) {
+    NSMutableArray *aryRandomNumber = [[NSMutableArray alloc] init];
+    while(aryRandomNumber.count < iCount) {
+        
         // 取得 iMinNumber 到 iMaxNumber 之間的亂數
         iRandom = (arc4random() % iMaxNumber) + iMinNumber;
         bRepeat = false;
-        if(0 == numberMutableArray.count) {
-            [numberMutableArray addObject:[NSString stringWithFormat:@"%d",iRandom]];
-        }
-        // 檢查重複
-        for (int i=0; i<numberMutableArray.count; i++) {
 
-            if (iRandom == (int)[[numberMutableArray objectAtIndex:i]intValue]) {
+        // 檢查重複
+        if(0 == aryRandomNumber.count) {
+            [aryRandomNumber addObject:[NSString stringWithFormat:@"%d",iRandom]];
+        }
+        
+        for (int i=0; i<aryRandomNumber.count; i++) {
+
+            if (iRandom == (int)[[aryRandomNumber objectAtIndex:i]intValue]) {
                 bRepeat = true;
-            }
-            if (bRepeat == true){
                 break;
             }
+
         }
+        
         if (bRepeat == false) {
-            [numberMutableArray addObject:[NSString stringWithFormat:@"%d",iRandom]];
+            [aryRandomNumber addObject:[NSString stringWithFormat:@"%d",iRandom]];
         }
     }
     // 將亂數推到畫面上
@@ -413,7 +416,7 @@
     for (int i=0; i<iCount; i++) {
         
         myTextField = (UITextField*)[m_aryTextField objectAtIndex:i];
-        myTextField.text = [NSString stringWithFormat:@"%@", [numberMutableArray objectAtIndex:i]];
+        myTextField.text = [NSString stringWithFormat:@"%@", [aryRandomNumber objectAtIndex:i]];
     }
 }
 
@@ -445,16 +448,16 @@
  * iMinNumber >= 0
  * iMaxNumber < 99
  */
-- (BOOL)checkRangeNumber {  NSLog(@"-checkRangeNumber");
+- (BOOL)checkRangeNumber {  NSLog(@"-checkRangeNumber --ok");
     
     int iMinNumber = 0;
     int iMaxNumber = 0;
     int iCount = (int)[m_aryTextField count];
-    if ([[self class] isPureInt:m_minTextField.text]) {
+    if ([[self class] isPureInt:m_minTextField.text] == true) {
         NSLog(@"m_minTextField:%@", m_minTextField.text);
         iMinNumber = [[m_minTextField text] intValue];
         //限制最大的範圍
-        if (99 < iMinNumber || 1 > iMinNumber ) {
+        if (99 < iMinNumber || 1 > iMinNumber) {
             [self showMessage:@"Warning" :@"最小值不能超過1~99"];
             return false;
         }
@@ -464,11 +467,11 @@
         return false;
     }
     
-    if ([[self class] isPureInt:m_maxTextField.text]) {
+    if ([[self class] isPureInt:m_maxTextField.text] == true) {
         NSLog(@"m_maxTextField:%@", m_maxTextField.text);
         iMaxNumber = [[m_maxTextField text] intValue];
         //限制最大的範圍
-        if (99 < iMaxNumber || 1 > iMaxNumber ) {
+        if (99 < iMaxNumber || 1 > iMaxNumber) {
             [self showMessage:@"Warning" :@"最大值不能超過1~99"];
             return false;
         }
@@ -491,21 +494,26 @@
 
 
 // 檢查手動輸入的數字 -ok
-- (BOOL)checkInputNumber {  NSLog(@"-checkInputNumber");
+- (BOOL)checkInputNumber {  NSLog(@"-checkInputNumber --ok");
+    
     int iCount = (int)[m_aryTextField count];
     int iValue = 0;
     int iMinNumber = 0;
     int iMaxNumber = 0;
-    UITextField * myTextField = nil;
+    UITextField *myTextField = nil;
+    
     for (int i=0; i<iCount; i++) {
+        
         myTextField = (UITextField *)[m_aryTextField objectAtIndex:i];
         
         // 檢查型態
-        if([[self class]isPureInt:myTextField.text]){
-            NSLog(@"%i => OK", i);
+        if([[self class]isPureInt:myTextField.text] == true){
+
             // String to int
             iValue = [myTextField.text intValue];
+            
         }else{
+            
             [self showMessage:@"Error" :@"請輸入任意正整數或[亂數]產生"];
             [myTextField becomeFirstResponder];  // focus
             NSLog(@"請輸入任意正整數或[亂數]產生");
@@ -514,32 +522,43 @@
         
         // 限制範圍 1~99
         if (0 >= iValue || 100 <= iValue) {
+            
             [self showMessage:@"Error" :@"輸入的數字必須介於1~99之間"];
             [myTextField becomeFirstResponder];  // focus
             NSLog(@"輸入的數字必須介於1~99之間");
             return false;
+            
         }
         
         // 是否重複
         for (int n = 0; n<iCount; n++) {
+            
             if (n == i) {
-                
+                // 不檢查自己
             }else if ([[(UITextField*)[m_aryTextField objectAtIndex:n] text]
-                isEqualToString:[myTextField text]]) {
+                       isEqualToString:[myTextField text]]) {
+                
                 [myTextField becomeFirstResponder];  // focus
                 [self showMessage:@"Error" :@"重複輸入"];
                 NSLog(@"重複輸入");
                 return false;
+                
             }
         }
         
         // 記錄最大值/最小值
         if (0 == i) {
+            
             iMinNumber =[[myTextField text]intValue];
+            
         }
+        
         if (iMaxNumber < [[myTextField text]intValue]) {
+            
             iMaxNumber = [[myTextField text]intValue];
+            
         }else if (iMinNumber > [[myTextField text]intValue]) {
+            
             iMinNumber = [[myTextField text]intValue];
         }
     }
@@ -561,7 +580,7 @@
 - (void)enableControl:(BOOL)bType
                      :(BOOL)bRangeType
                      :(BOOL)bRandomType
-                     :(BOOL)bChangeDifficulty{  NSLog(@"-enableControl");
+                     :(BOOL)bChangeDifficulty{  NSLog(@"-enableControl --ok");
     
     int iCount = (int)[m_aryTextField count];
     UITextField * myTextField = nil;
@@ -606,8 +625,8 @@
 }
 
 
-// 中斷遊戲重置所有配置 -ok
-- (void)stopGame {  NSLog(@"-stopGame");
+// 中斷遊戲重置所有配置
+- (void)stopGame {  NSLog(@"-stopGame --ok");
     
     // 移除按鈕
     int iCount = (int)[m_aryTextField count];
@@ -623,6 +642,7 @@
     
     // 重置連線數及按鈕狀態
     [self resetNumberStatus];
+    
     if (1 == m_modeSegmentedControl.selectedSegmentIndex) {
         [self enableControl:false :false :true :false];
     }else{
