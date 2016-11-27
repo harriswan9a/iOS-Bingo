@@ -21,7 +21,7 @@
     __weak IBOutlet UIButton *m_randomButton;
     
     __weak IBOutlet UILabel *m_connectionLabel;
-    __weak IBOutlet UILabel *m_difficultyLable;
+    __weak IBOutlet UILabel *m_difficultyLabel;
     
     __weak IBOutlet UIView *m_controlView;
     __weak IBOutlet UIView *m_playAreaView;
@@ -39,8 +39,8 @@
 // 切換模式
 - (IBAction)selectModeAction:(UISegmentedControl *)sender {   NSLog(@"-selectModeAction --ok");
     
-    // 中斷遊戲
-    [self stopGame];
+    // 初始化
+    [self initializeGame];
     
     switch (sender.selectedSegmentIndex) {
 
@@ -86,10 +86,11 @@
 
     int iCount = (int)[m_aryTextField count];
     
+    // End
     if ([[startButton currentTitle]isEqualToString: @"結束"]) {
         
         NSLog(@"---%@", [sender currentTitle]);
-        [self stopGame];
+        [self initializeGame];
         return;
     }
     
@@ -117,7 +118,7 @@
     [self removeTextField:iCount];               // 移除畫面上的 TexField
     [m_aryTextField removeAllObjects];           // 清空陣列重新產生
     iCount = pow([sender value], 2.0);
-    [m_difficultyLable setText:[NSString stringWithFormat:@"%d", (int)[sender value]]];
+    [m_difficultyLabel setText:[NSString stringWithFormat:@"%d", (int)[sender value]]];
     [self assignTextField:iCount];
 }
 
@@ -155,11 +156,11 @@
         [self addTextField:i :nil :iGapX  :iGapY :iParamArray[iSetParam][2] :iParamArray[iSetParam][3]];
     }
     
-    [self resetNumberStatus];
+    [self resetButtonStatus];
 }
 
 // 重置連線紀錄
-- (void)resetNumberStatus {  NSLog(@"-resetNumberStatus --ok");
+- (void)resetButtonStatus {  NSLog(@"-resetButtonStatus --ok");
     // 重置顯示連線數
     [m_connectionLabel setText:@"0"];
     // 重置判斷連線array
@@ -185,7 +186,7 @@
     [self assignTextField:9];                           // 產生textField元件
     [self getRandom:(int)[m_aryTextField count]];       // 取得亂數
     [self enableControl:false :false :true :false];     // 關閉控制項
-    m_difficultyLable.text = @"3";
+    m_difficultyLabel.text = @"3";
 }
 
 
@@ -351,14 +352,6 @@
 }
 
 
-/* 關閉遊戲按鈕 -ok
- * @param1: int 關閉幾個按鈕
- */
-- (void)removeNumberButton:(int)iCount {  NSLog(@"-removeNumberButton");
-    for (int i=500; i<=iCount+500; i++) {
-        [(UIButton*)[self.view viewWithTag:i]  removeFromSuperview];
-    }
-}
 
 /* 關閉遊戲按鈕 -ok
  * @param1: int 關閉幾個按鈕
@@ -513,10 +506,14 @@
             iValue = [myTextField.text intValue];
             
         }else{
+            if(1 == m_modeSegmentedControl.selectedSegmentIndex) {
+                [self showMessage:@"Error" :@"請點擊[亂數]產生"];
+            }else {
+                [self showMessage:@"Error" :@"請輸入任意正整數或[亂數]產生"];
+                [myTextField becomeFirstResponder];  // focus
+            }
             
-            [self showMessage:@"Error" :@"請輸入任意正整數或[亂數]產生"];
-            [myTextField becomeFirstResponder];  // focus
-            NSLog(@"請輸入任意正整數或[亂數]產生");
+            NSLog(@"方格不能是空值");
             return false;
         }
         
@@ -625,8 +622,8 @@
 }
 
 
-// 中斷遊戲重置所有配置
-- (void)stopGame {  NSLog(@"-stopGame --ok");
+// 重置所有配置
+- (void)initializeGame {  NSLog(@"-initializeGame --ok");
     
     // 移除按鈕
     int iCount = (int)[m_aryTextField count];
@@ -641,7 +638,7 @@
     [m_startButton setTitle:@"開始" forState:UIControlStateNormal];
     
     // 重置連線數及按鈕狀態
-    [self resetNumberStatus];
+    [self resetButtonStatus];
     
     if (1 == m_modeSegmentedControl.selectedSegmentIndex) {
         [self enableControl:false :false :true :false];

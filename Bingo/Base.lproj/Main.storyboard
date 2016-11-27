@@ -102,7 +102,7 @@
                                         <rect key="frame" x="210" y="96" width="94" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
-                                            <action selector="changeDifficultyAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="s6J-UT-GRr"/>
+                                            <action selector="changeDifficultyAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="GDF-Ci-BSx"/>
                                         </connections>
                                     </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="困難度:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3EU-AY-vtg">
@@ -133,8 +133,8 @@
                     <connections>
                         <outlet property="m_connectionLabel" destination="HON-py-C4t" id="GKa-cP-ttA"/>
                         <outlet property="m_controlView" destination="kmH-Tg-KwJ" id="3dK-SK-1Id"/>
-                        <outlet property="m_difficultyLable" destination="wec-Uf-vYz" id="4A8-bw-A6G"/>
-                        <outlet property="m_difficultyStepper" destination="dVB-ao-JFI" id="oEJ-I9-6iq"/>
+                        <outlet property="m_difficultyLabel" destination="wec-Uf-vYz" id="vjv-GG-aWp"/>
+                        <outlet property="m_difficultyStepper" destination="dVB-ao-JFI" id="trD-DO-nNp"/>
                         <outlet property="m_maxTextField" destination="YPS-Oi-jy7" id="Pc3-dO-gRF"/>
                         <outlet property="m_minTextField" destination="V3d-UY-Zwq" id="sbe-GT-l2w"/>
                         <outlet property="m_modeSegmentedControl" destination="QTX-o8-rJz" id="e9c-kZ-fia"/>
